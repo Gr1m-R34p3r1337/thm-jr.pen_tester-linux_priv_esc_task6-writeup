@@ -15,8 +15,8 @@ outpt   :   ...
             (ALL) NOPASSWD: /usr/bin/find
             (ALL) NOPASSWD: /usr/bin/less
             (ALL) NOPASSWD: /usr/bin/nano
-As we see we have 3 tools that the user "karen" can use with sudo rights. So the answer for the first question is 3. Lets see what about is the tool that the room gives us.
 
+Lets see what about is the tool that the room gives us
 GTFOBin is a powerfull curated list of UNIX Binaries that can be used to bypass local security restrictions in misconfigured systems. With a simple search, it seems that all the above tools have a one-line command that opens a root shell with superuser (sudo) rights. For now we will use the first one.
 
 After we have connected with ssh to the target we type
@@ -33,8 +33,7 @@ For the third one, we will follow the same technique. We search for nmap and we 
 Last but not least, we have to find the hash of a user's password. In Linux is stored inside /etc/shadow.
 input   :   cat /etc/shadow
 outpt   :   ...
-            frank:$6$2.sUUDsOLIpXKxcr$eImtgFExyr2ls4jsghdD3DHLHHP9X50Iv.jNmwo/BJpphrPRJWjelWEz2HH.joV14aDEwW1c3CahzB1uaqeLR1:18796:0:99999:7:::
-So the answer will be "6$2.sUUDsOLIpXKxcr$eImtgFExyr2ls4jsghdD3DHLHHP9X50Iv.jNmwo/BJpphrPRJWjelWEz2HH.joV14aDEwW1c3CahzB1uaqeLR1"
+            frank:<HASH>:18796:0:99999:7:::
 
 
 
